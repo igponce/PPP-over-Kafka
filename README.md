@@ -9,3 +9,14 @@ Sometimes you receive data from IoT, embedded controllers in UDP form and you ne
 ... or you want to store communications that you can replay layer (great for debugging)...
 
 So, we're building a small swiss army knife using Kafka as the blade, wirecutter, can opener, etc...
+
+## Initial Idea
+
+Back uin 2001, Scott Bronston wrote an interesting [PPP-SSH tunneling howto](http://www.tldp.org/HOWTO/ppp-ssh/).
+In his paper, Scott told us to use the (relatively) unknown use of PPP with a pipe (in the unix world anything that could be done with a socket can also be done to a file, pipe, named pipe, etc...).
+
+The novel idea was using ssh on the other end of the pipe, plus a second PPP daemon in the remote host.
+
+Orignal_host | PPP | -> | SSH | --> Remote_host | PPPd|
+
+All the "magic" here was done using [PPPd](https://linux.die.net/man/8/pppd) *pty* option
